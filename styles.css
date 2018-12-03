@@ -1,0 +1,51 @@
+
+
+.img {
+  position: absolute;
+  /* comment out 'top' and 'left' and see what happens */
+height: 250px;
+width: 250px;
+margin: 0 auto;
+background-color: red;
+animation-name: stretch;
+animation-duration: 1.5s;
+animation-timing-function: ease-out;
+animation-delay: 0;
+animation-direction: alternate;
+animation-iteration-count: infinite;
+animation-fill-mode: none;
+animation-play-state: running;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: red;
+    border-radius: 100%;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: yellow;
+  }
+}
+
+body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*
+  good:
+    'transform' uses a RenderLayer so the GPU calculates the position
+    works for position (translate), scale, rotation, opacity
+  bad:
+    'position' triggers 'layout' so the CPU must calculate every frame,
+    so *never* use for mobiles or with "animation-iteration: infinite;"
+*/
